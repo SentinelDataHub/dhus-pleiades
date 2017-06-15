@@ -1,0 +1,759 @@
+<?xml version="1.0"?>
+<!--
+  Data HUb Service (DHuS) - For Space data distribution.
+  Copyright (C) 2017 European Space Agency (ESA)
+  Copyright (C) 2017 GAEL Systems
+  Copyright (C) 2017 Serco Spa
+
+  This file is part of DHuS software sources.
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as
+  published by the Free Software Foundation, either version 3 of the
+  License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  GNU Affero General Public License for more details.
+
+  You should have received a copy of the GNU Affero General Public License
+  along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<!DOCTYPE rdf:RDF [
+   <!ENTITY rdf  "http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#">
+   <!ENTITY owl  "http://www.w3.org/2002/07/owl#">
+   <!ENTITY phr  "http://www.gael.fr/fr/phr#">
+   <!ENTITY drb  "http://www.gael.fr/drb#">
+   <!ENTITY dhus "http://www.gael.fr/dhus#">
+   <!ENTITY img  "http://www.gael.fr/drb/image#">
+   ]>
+
+<rdf:RDF xmlns:owl ="&owl;"
+         xmlns:rdf ="&rdf;"
+         xmlns:rdfs="&rdfs;"
+         xmlns:phr ="&phr;"
+         xmlns:drb ="&drb;"
+         xmlns:dhus="&dhus;"
+         xmlns:img ="&img;"
+         xml:base  ="&phr;">
+
+   <owl:Ontology rdf:about="&phr;"/>
+
+   <!-- PHR PRODUCT  -->
+   <rdf:Description rdf:about="&phr;productFolderDimapV2">
+      <dhus:metadataTypes rdf:parseType="Literal">
+
+         <metadataType id="panchromaticGenerationTime"
+                       name="PANCHROMATIC Generation time"
+                       contentType="text/plain"
+                       category="product">
+         </metadataType>
+
+         <metadataType id="multispectralGenerationTime"
+                       name="MULTISPECTRAL Generation time"
+                       contentType="text/plain"
+                       category="product">
+         </metadataType>
+
+         <metadataType id="format"
+                       name="Format"
+                       contentType="text/plain"
+                       category="product">
+            <solrField name="format"
+                       type="string"
+                       required="true"/>
+         </metadataType>
+
+         <metadataType id="size"
+                       name="Size"
+                       contentType="text/plain"
+                       category="summary">
+            <solrField name="size"
+                       type="string"/>
+         </metadataType>
+
+         <!--
+         <metadataType id="panchromaticBeginPosition"
+                       name="PANCHROMATIC Sensing start"
+                       contentType="text/date+iso8601"
+                       category="product">
+            <solrField name="panchromaticbeginposition"
+                       type="tdate"/>
+         </metadataType>
+
+         <metadataType id="multispectralBeginPosition"
+                       name="MULTISPECTRAL Sensing start"
+                       contentType="text/date+iso8601"
+                       category="product">
+            <solrField name="multispectralbeginposition"
+                       type="tdate"/>
+         </metadataType>
+
+         <metadataType id="panchromaticEndPosition"
+                       name="PANCHROMATIC Sensing stop"
+                       contentType="text/date+iso8601"
+                       category="product">
+            <solrField name="panchromaticendposition"
+                       type="tdate"/>
+         </metadataType>
+
+         <metadataType id="multispectralEndPosition"
+                       name="MULTISPECTRAL Sensing stop"
+                       contentType="text/date+iso8601"
+                       category="product">
+            <solrField name="multispectralendposition"
+                       type="tdate"/>
+         </metadataType>
+         -->
+
+         <metadataType id="beginPosition"
+                       name="Sensing start"
+                       contentType="text/date+iso8601"
+                       category="product">
+            <solrField name="beginposition"
+                       type="tdate"/>
+         </metadataType>
+
+         <metadataType id="endPosition"
+                       name="Sensing stop"
+                       contentType="text/date+iso8601"
+                       category="product">
+            <solrField name="endposition"
+                       type="tdate"/>
+         </metadataType>
+
+         <metadataType id="mission"
+                       name="Mission"
+                       contentType="text/plain"
+                       category="product">
+            <solrField name="mission"
+                       type="string"/>
+         </metadataType>
+
+         <metadataType id="platformName"
+                       name="Platform name"
+                       contentType="text/plain"
+                       category="platform">
+            <solrField name="platformname"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="platformShortName"
+                       name="Platform short name"
+                       contentType="text/plain"
+                       category="platform">
+            <solrField name="platformshortname"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="platformNumber"
+                       name="Platform number"
+                       contentType="text/plain"
+                       category="platform">
+         </metadataType>
+
+         <metadataType id="filename"
+                       name="Filename"
+                       contentType="text/plain"
+                       category="summary">
+            <solrField name="filename"
+                       type="string"
+                       required="true"/>
+         </metadataType>
+
+         <metadataType id="platformSerialIdentifier"
+                       name="Platform serial identifier"
+                       contentType="text/plain"
+                       category="platform">
+            <solrField name="platformserialidentifier"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="instrumentName"
+                       name="Instrument name"
+                       contentType="text/plain"
+                       category="instrument">
+            <solrField name="instrumentname"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="instrumentShortName"
+                       name="Instrument short name"
+                       contentType="text/plain"
+                       category="instrument">
+            <solrField name="instrumentshortname"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="orbitNumber"
+                       name="Orbit number (start)"
+                       contentType="text/integer"
+                       category="product">
+            <solrField name="orbitnumber"
+                       type="int"/>
+         </metadataType>
+
+         <metadataType id="orbitDirection"
+                       name="Orbit direction"
+                       contentType="text/plain"
+                       category="product">
+            <solrField name="orbitdirection"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="spectralProcessing"
+                       name="Spectral processing"
+                       contentType="text/plain"
+                       category="product">
+            <solrField name="spectralprocessing"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="bundle"
+                       name="Bundle"
+                       contentType="text/plain"
+                       category="product">
+            <solrField name="bundle"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="processingLevel"
+                       name="Processing level"
+                       contentType="text/plain"
+                       category="product">
+            <solrField name="processinglevel"
+                       type="text_general"/>
+         </metadataType>
+
+         <metadataType id="panchromaticColumnsCount"
+                       name="PANCHROMATIC Columns count"
+                       contentType="text/integer"
+                       category="product">
+         </metadataType>
+
+         <metadataType id="multispectralColumnsCount"
+                       name="MULTISPECTRAL Columns count"
+                       contentType="text/integer"
+                       category="product">
+         </metadataType>
+
+         <metadataType id="panchromaticRowsCount"
+                       name="PANCHROMATIC Rows count"
+                       contentType="text/integer"
+                       category="product">
+         </metadataType>
+
+         <metadataType id="multispectralRowsCount"
+                       name="MULTISPECTRAL Rows count"
+                       contentType="text/integer"
+                       category="product">
+         </metadataType>
+
+<!--
+         <metadataType id="coordinates"
+                       name="Coordinates"
+                       contentType="application/wkt"
+                       category="product">
+            <solrField name="coordinates"
+                       type="location_rpt"/>
+         </metadataType>
+-->
+
+         <metadataType id="GMLfootprint"
+                       name="Footprint"
+                       contentType="application/gml+xml"
+                       category="product">
+            <solrField name="gmlfootprint"
+                       type="string"/>
+         </metadataType>
+
+         <metadataType id="footprint"
+                       name="JTS footprint"
+                       contentType="application/jts"
+                       category="product">
+            <solrField name="footprint"
+                       type="location_rpt"/>
+         </metadataType>
+
+      </dhus:metadataTypes>
+   </rdf:Description>
+
+   <!-- PHR PRODUCT  -->
+   <rdf:Description rdf:about="&phr;productFolderDimapV2">
+      <dhus:support/>
+      <dhus:identifier rdf:parseType="Literal">
+      <![CDATA[
+         name(.)
+      ]]>
+      </dhus:identifier>
+
+      <dhus:metadataExtractor  rdf:parseType="Literal">
+      <![CDATA[
+         <!-- ============================================================== -->
+         <!-- FUNCTIONS                                                      -->
+         <!-- ============================================================== -->
+
+         declare function local:computeSizes ($path, $base as item()*) as item()*
+         {
+            for $child in $path/*
+            return
+               if ($child/@directory)
+               then
+                  local:computeSizes ($child, base)
+               else
+                  fn:data($child/@size), $base
+         };
+
+         declare function local:roundHalfDown($arg, $precision) as xs:double*
+         {
+            xs:integer((xs:double($arg)*math:power(10, $precision))) div 
+               math:power(10, $precision)
+         };
+
+         <!-- ============================================================== -->
+         <!-- VARIABLES                                                      -->
+         <!-- ============================================================== -->
+         
+         let $name := name(.)
+
+         (: PANCHROMATIC FILE IF EXISTS :)
+         let $directoryP := *[matches(name(), "(?i)IMG_PHR(1A|1B)_P_[0-9]{3}")]
+         let $dimapFileP := $directoryP/*[matches(name(), "(?i)DIM_PHR(1A|1B)_P.*\.XML")]
+         let $stripFileP := $directoryP/LINEAGE/*[matches(name(), "(?i)STRIP_.*_DIM\.XML")]
+
+         (: MULTISPECTRAL FILE IF EXISTS :)
+         let $directoryMS := *[matches(name(), "(?i)IMG_PHR(1A|1B)_MS_[0-9]{3}")]
+         let $dimapFileMS := $directoryMS/*[matches(name(), "(?i)DIM_PHR(1A|1B)_MS.*\.XML")]
+         let $stripFileMS := $directoryMS/LINEAGE/*[matches(name(), "(?i)STRIP_.*_DIM\.XML")]
+
+         (: PAN-SHARPENED FILE IF EXISTS :)
+         let $directoryPMS := *[matches(name(), "(?i)IMG_PHR(1A|1B)_(PMS|PMS-N|PMS-X)_[0-9]{3}")]
+         let $dimapFilePMS := $directoryPMS/*[matches(name(), "(?i)DIM_PHR(1A|1B)_(PMS|PMS-N|PMS-X).*\.XML")]
+         let $stripFilePMS := $directoryPMS/LINEAGE/*[matches(name(), "(?i)STRIP_.*_DIM\.XML")]
+
+         (: Dimap file of reference:
+         1. the PANCHROMATIC ; 2. the MULTISPECTRAL ; 3 the PAN-SHARPENED :)
+         let $dimapFileReference :=
+            if ($directoryP)
+            then $dimapFileP
+            else
+               if ($directoryMS)
+               then $dimapFileMS
+               else
+                  if ($directoryPMS)
+                  then $dimapFilePMS
+                  else ()
+
+         (: Strip file of reference:
+         1. the PANCHROMATIC ; 2. the MULTISPECTRAL ; 3 the PAN-SHARPENED :)
+         let $stripFileReference :=
+            if ($directoryP)
+            then $stripFileP
+            else
+               if ($directoryMS)
+               then $stripFileMS
+               else
+                  if ($directoryPMS)
+                  then $stripFilePMS
+                  else ()
+
+         let $Value_Platform_Number :=
+            fn:data($dimapFileReference/Dimap_Document/Dataset_Sources/
+               Source_Identification/Strip_Source/MISSION_INDEX)
+
+         let $Value_Row_Count_P :=
+            fn:data($dimapFileP/Dimap_Document/Raster_Data/Raster_Dimensions/NROWS)
+
+         let $Value_Column_Count_P :=
+            fn:data($dimapFileP/Dimap_Document/Raster_Data/Raster_Dimensions/NCOLS)
+
+         let $Value_Row_Count_MS :=
+            fn:data($dimapFileMS/Dimap_Document/Raster_Data/Raster_Dimensions/NROWS)
+
+         let $Value_Column_Count_MS :=
+            fn:data($dimapFileMS/Dimap_Document/Raster_Data/Raster_Dimensions/NCOLS)
+
+         let $Value_Column_Count_Reference :=
+            if ($directoryP)
+            then $Value_Column_Count_P
+            else
+               if ($directoryMS)
+               then $Value_Column_Count_MS
+               else
+                  if ($directoryPMS)
+                  then fn:data($dimapFilePMS/Dimap_Document/Raster_Data/Raster_Dimensions/NCOLS)
+                  else ()
+
+         let $Value_Row_Count_Reference :=
+            if ($directoryP)
+            then $Value_Row_Count_P
+            else
+               if ($directoryMS)
+               then $Value_Row_Count_MS
+               else
+                  if ($directoryPMS)
+                  then fn:data($dimapFilePMS/Dimap_Document/Raster_Data/Raster_Dimensions/NROWS)
+                  else ()
+
+         return
+         (
+
+         <!-- ============================================================== -->
+         <!-- EXTRACTIONS                                                    -->
+         <!-- ============================================================== -->
+
+         <!-- Indexed metadata -->
+
+         <!-- GENERATION TIME -->
+         <metadata name="PANCHROMATIC Generation time"
+                   category="product" type="text/plain">
+         { fn:data($dimapFileP/Dimap_Document/Product_Information/Delivery_Identification/PRODUCTION_DATE) }
+         </metadata>,
+         <metadata name="MULTISPECTRAL Generation time"
+                   category="product" type="text/plain">
+         { fn:data($dimapFileMS/Dimap_Document/Product_Information/Delivery_Identification/PRODUCTION_DATE) }
+         </metadata>,
+
+         <!-- FORMAT -->
+         <metadata queryable="format" name="Format"
+                   category="product" type="text/plain">
+         {
+            concat("DIMAP 2.0 ",
+               if (fn:data($dimapFileReference/Dimap_Document/Raster_Data/Data_Access/DATA_FILE_FORMAT)
+                   = "image/jp2")
+               then "/ JPEG2000 "
+               else "")
+         }
+         </metadata>,
+
+         <!-- SIZE -->
+         <metadata queryable="size" name="Size"
+                   category="summary" type="text/plain">
+         {
+            let $size := xs:double(fn:sum(local:computeSizes(., ())))
+            let $kilo := 1024
+            let $mega := xs:integer($kilo * 1024)
+            let $giga := xs:integer($mega * 1024)
+            let $tera := xs:integer($giga * 1024)
+            let $kilo_size := local:roundHalfDown(($size div $kilo), 2)
+            let $mega_size := local:roundHalfDown(($size div $mega), 2)
+            let $giga_size := local:roundHalfDown(($size div $giga), 2)
+            let $tera_size := local:roundHalfDown(($size div $tera), 2)
+            return
+               if ($size < 1024)
+               then
+                  concat ($size, " bytes")
+               else
+                  if (($size div $kilo) < 1024)
+                  then
+                     concat ($kilo_size, " KB")
+                  else
+                     if (($size div $mega) < 1024)
+                        then
+                           concat ($mega_size, " MB")
+                     else
+                        if (($size div $giga) < 1024)
+                        then
+                           concat ($giga_size, " GB")
+                        else 
+                           concat ($tera_size, " TB")
+         }
+
+         </metadata>,
+
+                  <!-- SENSING START 
+                  TODO TO REMOVE
+                  <metadata queryable="panchromaticbeginposition" name="PANCHROMATIC Sensing start"
+                            category="product" type="text/date+iso8601">
+                  {
+                     if ($dimapFileP/Dimap_Document/Geometric_Data/Refined_Model/
+                         Time/Time_Range/START)
+                     then
+                        fn:data($dimapFileP/Dimap_Document/Geometric_Data/Refined_Model/
+                                Time/Time_Range/START)
+                     else
+                        fn:data($stripFileP/Dimap_Document/Acquisition_Configuration/
+                                Instrument_Configuration/Time_Configuration/Time_Range/START)
+                  }
+                  </metadata>,
+                  <metadata queryable="multispectralbeginposition" name="MULTISPECTRAL Sensing start"
+                            category="product" type="text/date+iso8601">
+                  {
+                     if ($dimapFileMS/Dimap_Document/Geometric_Data/Refined_Model/
+                         Time/Time_Range/START)
+                     then
+                        fn:data($dimapFileMS/Dimap_Document/Geometric_Data/Refined_Model/
+                                Time/Time_Range/START)
+                     else
+                        fn:data($stripFileMS/Dimap_Document/Acquisition_Configuration/
+                                Instrument_Configuration/Time_Configuration/Time_Range/START)
+                  }
+                  </metadata>,
+
+                  SENSING STOP
+                  <metadata queryable="panchromaticendposition" name="PANCHROMATIC Sensing stop"
+                            category="product" type="text/date+iso8601">
+                  {
+                     if ($dimapFileP/Dimap_Document/Geometric_Data/Refined_Model/
+                         Time/Time_Range/END)
+                     then
+                        fn:data($dimapFileP/Dimap_Document/Geometric_Data/Refined_Model/
+                                Time/Time_Range/END)
+                     else
+                        fn:data($stripFileP/Dimap_Document/Acquisition_Configuration/
+                                Instrument_Configuration/Time_Configuration/Time_Range/END)
+                  }
+                  </metadata>,
+                  <metadata queryable="multispectralendposition" name="MULTISPECTRAL Sensing stop"
+                            category="product" type="text/date+iso8601">
+                  {
+                     if ($dimapFileMS/Dimap_Document/Geometric_Data/Refined_Model/
+                         Time/Time_Range/END)
+                     then
+                        fn:data($dimapFileMS/Dimap_Document/Geometric_Data/Refined_Model/
+                                Time/Time_Range/END)
+                     else
+                        fn:data($stripFileMS/Dimap_Document/Acquisition_Configuration/
+                                Instrument_Configuration/Time_Configuration/Time_Range/END)
+                  }
+                  </metadata>,
+                  -->
+
+         <!-- SENSING START -->
+         <metadata queryable="beginposition" name="Sensing start"
+                   category="product" type="text/date+iso8601">
+         {
+            if ($dimapFileReference/Dimap_Document/Geometric_Data/Refined_Model/
+                Time/Time_Range/START)
+            then
+               fn:data($dimapFileReference/Dimap_Document/Geometric_Data/Refined_Model/
+                       Time/Time_Range/START)
+            else
+               fn:data($stripFileReference/Dimap_Document/Acquisition_Configuration/
+                       Instrument_Configuration/Time_Configuration/Time_Range/START)
+         }
+         </metadata>,
+
+         <!-- SENSING STOP -->
+         <metadata queryable="endposition" name="Sensing stop"
+                   category="product" type="text/date+iso8601">
+         {
+            if ($dimapFileReference/Dimap_Document/Geometric_Data/Refined_Model/
+                Time/Time_Range/END)
+            then
+               fn:data($dimapFileReference/Dimap_Document/Geometric_Data/Refined_Model/
+                       Time/Time_Range/END)
+            else
+               fn:data($stripFileReference/Dimap_Document/Acquisition_Configuration/
+                       Instrument_Configuration/Time_Configuration/Time_Range/END)
+         }
+         </metadata>,
+
+         <!-- MISSION NAME -->
+         <metadata queryable="mission" name="Mission"
+                   category="platform" type="text/plain">
+            Pleiades
+         </metadata>,
+
+         <!-- PLATFORM NAME -->
+         <metadata queryable="platformname" name="Platform name"
+                   category="platform" type="text/plain">
+         { concat("Pleiades ", $Value_Platform_Number) }
+         </metadata>,
+
+         <!-- PLATFORM SHORT NAME -->
+         <metadata queryable="platformshortname" name="Platform short name"
+                   category="platform" type="text/plain">
+         { concat("PHR-", $Value_Platform_Number) }
+         </metadata>,
+
+         <!-- PLATFORM NUMBER -->
+         <metadata name="Platform number"
+                   category="platform" type="text/plain">
+         { $Value_Platform_Number }
+         </metadata>,
+
+         <!-- FILENAME -->
+         <metadata queryable="filename" name="Filename"
+                   category="summary" type="text/plain">
+         { $name }
+         </metadata>,
+
+         <!-- PLATFORM NSSDC IDENTIFIER -->
+         <metadata queryable="platformserialidentifier" name="Platform serial identifier"
+                   category="platform" type="text/plain">
+         {
+            if ($Value_Platform_Number = "1A")
+            then "2011-076F"
+            else
+               if ($Value_Platform_Number = "1B")
+               then "2012-068A"
+               else ""
+         }
+         </metadata>,
+
+         <!-- INSTRUMENT NAME -->
+         <metadata queryable="instrumentname" name="Instrument name"
+                   category="instrument" type="text/plain">
+            Haute Resolution
+         </metadata>,
+
+         <!-- INSTRUMENT SHORT NAME -->
+         <metadata queryable="instrumentshortname" name="Instrument short name"
+                   category="instrument" type="text/plain">
+            PHR
+         </metadata>,
+
+         <!-- ABSOLUTE ORBIT -->
+         <metadata queryable="orbitnumber" name="Orbit number (start)"
+                   category="product" type="text/integer">
+         { fn:data($stripFileReference/Dimap_Document/Acquisition_Configuration/
+                   Platform_Configuration/Ephemeris_Configuration/
+                   ACQUISITION_ORBIT_NUMBER) }
+         </metadata>,
+
+         <!-- ORBIT DIRECTION -->
+         <metadata queryable="orbitdirection" name="Orbit direction"
+                   category="product" type="text/plain">
+         { fn:data($stripFileReference/Dimap_Document/Acquisition_Configuration/
+                   Platform_Configuration/Ephemeris_Configuration/
+                   ACQUISITION_ORBIT_DIRECTION) }
+         </metadata>,
+
+         <!-- BUNDLE -->
+         <metadata queryable="bundle" name="Bundle"
+                   category="product" type="text/plain">
+         {
+            if ($dimapFileP and $dimapFileMS)
+            then "Yes"
+            else "No"
+         }
+         </metadata>,
+
+         <!-- PROCESSING LEVEL -->
+         <metadata queryable="processinglevel" name="Processing level"
+                   category="product" type="text/plain">
+         { fn:data($dimapFileReference/Dimap_Document/Processing_Information/
+                   Product_Settings/PROCESSING_LEVEL) }
+         </metadata>,
+
+         <!-- COLUMN COUNT -->
+         <metadata name="PANCHROMATIC Column count"
+                   category="product" type="text/integer">
+         { $Value_Column_Count_P }
+         </metadata>,
+         <metadata name="MULTISPECTRAL Column count"
+                   category="product" type="text/integer">
+         { $Value_Column_Count_MS }
+         </metadata>,
+
+         <!-- ROW COUNT -->
+         <metadata name="PANCHROMATIC Row count"
+                   category="product" type="text/integer">
+         { $Value_Row_Count_P }
+         </metadata>,
+         <metadata name="MULTISPECTRAL Row count"
+                   category="product" type="text/integer">
+         { $Value_Row_Count_MS }
+         </metadata>,
+
+         <!-- GML FOOTPRINT -->
+         <metadata queryable="gmlfootprint" name="Footprint"
+                   category="product" type="application/gml+xml">
+            <gml:Polygon xmlns:gml="http://www.opengis.net/gml"
+                         srsName="http://www.opengis.net/gml/srs/epsg.xml#4326">
+               <gml:outerBoundaryIs>
+                  <gml:LinearRing>
+                     <gml:coordinates>
+                     {
+                        let $Node_Dataset_Extent := $dimapFileReference/Dimap_Document/Dataset_Content/Dataset_Extent
+
+                        let $Node_ul := $Node_Dataset_Extent/Vertex[ROW = 1 and COL = 1]
+                        let $Node_ur := $Node_Dataset_Extent/Vertex[ROW = 1 and COL = $Value_Column_Count_Reference]
+                        let $Node_lr := $Node_Dataset_Extent/Vertex[ROW = $Value_Row_Count_Reference and
+                                                                    COL = $Value_Column_Count_Reference]
+                        let $Node_ll := $Node_Dataset_Extent/Vertex[ROW = $Value_Row_Count_Reference and COL = 1]
+
+                        return
+                        concat (
+                           data($Node_ul/LAT), ",", data($Node_ul/LON), " ",
+                           data($Node_ur/LAT), ",", data($Node_ur/LON), " ",
+                           data($Node_lr/LAT), ",", data($Node_lr/LON), " ",
+                           data($Node_ll/LAT), ",", data($Node_ll/LON), " ",
+                           data($Node_ul/LAT), ",", data($Node_ul/LON))
+                     }
+                     </gml:coordinates>
+                  </gml:LinearRing>
+               </gml:outerBoundaryIs>
+            </gml:Polygon>
+         </metadata>,
+
+         <!-- JTS FOOTPRINT -->
+         <metadata
+            queryable="footprint"
+            category="product"
+            name="JTS footprint"
+            type="application/jts">
+            {
+               let $Node_Dataset_Extent := $dimapFileReference/Dimap_Document/Dataset_Content/Dataset_Extent
+
+               let $Node_ul := $Node_Dataset_Extent/Vertex[ROW = 1 and COL = 1]
+               let $Node_ur := $Node_Dataset_Extent/Vertex[ROW = 1 and COL = $Value_Column_Count_Reference]
+               let $Node_lr := $Node_Dataset_Extent/Vertex[ROW = $Value_Row_Count_Reference and
+                                                           COL = $Value_Column_Count_Reference]
+               let $Node_ll := $Node_Dataset_Extent/Vertex[ROW = $Value_Row_Count_Reference and COL = 1]
+
+               return
+               concat("POLYGON ((",
+                      data($Node_ul/LON), " ", data($Node_ul/LAT), ",",
+                      data($Node_ur/LON), " ", data($Node_ur/LAT), ",",
+                      data($Node_lr/LON), " ", data($Node_lr/LAT), ",",
+                      data($Node_ll/LON), " ", data($Node_ll/LAT), ",",
+                      data($Node_ul/LON), " ", data($Node_ul/LAT),
+                      "))")
+            }
+         </metadata>
+      )
+      ]]>
+      </dhus:metadataExtractor>
+
+      <img:descriptor rdf:parseType="Literal" xmlns:img="&img;">
+         <img:collection xmlns:img="&img;">
+            <img:raster name="preview">
+               <img:source>
+                  if (*[matches(name(), "(?i)IMG_PHR1._MS_.*")])
+                  then
+                     *[matches(name(),
+                     "(?i)IMG_PHR1._MS_.*")]/*[matches(name(), "(?i)PREVIEW.*\.JPG")]
+                  else
+                     if (*[matches(name(), "(?i)IMG_PHR1._P_.*")])
+                     then
+                        *[matches(name(),
+                        "(?i)IMG_PHR1._P_.*")]/*[matches(name(), "(?i)PREVIEW.*\.JPG")]
+                     else
+                        if (*[matches(name(), "(?i)IMG_PHR1._PMS.*")])
+                        then
+                           *[matches(name(),
+                           "(?i)IMG_PHR1._PMS.*")]/*[matches(name(), "(?i)PREVIEW.*\.JPG")]
+                        else ()
+               </img:source>
+            </img:raster>
+         </img:collection>
+      </img:descriptor>
+
+      <img:rendering rdf:parseType="Literal" xmlns:img="&img;">
+         <img:operator name="pass-flip">
+            <img:script language="beanshell" version="1.0">
+               ParameterBlock pb = new ParameterBlock();
+               pb.addSource(source);
+               return JAI.create("Format", pb);
+            </img:script>
+         </img:operator>
+      </img:rendering>
+
+   </rdf:Description>
+
+</rdf:RDF>

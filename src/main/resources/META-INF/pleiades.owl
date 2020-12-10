@@ -46,16 +46,18 @@
    <rdf:Description rdf:about="&phr;productFolderDimapV2">
       <dhus:metadataTypes rdf:parseType="Literal">
 
-         <metadataType id="panchromaticGenerationTime"
-                       name="PANCHROMATIC Generation time"
-                       contentType="text/plain"
+         <metadataType id="panchromaticGenerationDate"
+                       name="PANCHROMATIC Generation date"
+                       contentType="text/date+iso8601"
                        category="product">
+                       <solrField name="panchromaticgenerationdate" type="tdate"/>
          </metadataType>
 
-         <metadataType id="multispectralGenerationTime"
-                       name="MULTISPECTRAL Generation time"
-                       contentType="text/plain"
+         <metadataType id="multispectralGenerationDate"
+                       name="MULTISPECTRAL Generation date"
+                       contentType="text/date+iso8601"
                        category="product">
+                       <solrField name="multispectralgenerationdate" type="tdate"/>
          </metadataType>
 
          <metadataType id="format"
@@ -407,18 +409,18 @@
 
          <!-- Indexed metadata -->
 
-         <!-- GENERATION TIME -->
-         <metadata name="PANCHROMATIC Generation time"
-                   category="product" type="text/plain">
+         <!-- GENERATION DATE -->
+         <metadata name="PANCHROMATIC Generation date" queryable="panchromaticgenerationdate"
+                   category="product" type="text/date+iso8601">
          { fn:data($dimapFileP/Dimap_Document/Product_Information/Delivery_Identification/PRODUCTION_DATE) }
          </metadata>,
-         <metadata name="MULTISPECTRAL Generation time"
-                   category="product" type="text/plain">
+         <metadata name="MULTISPECTRAL Generation date" queryable="multispectralgenerationdate"
+                   category="product" type="text/date+iso8601">
          { fn:data($dimapFileMS/Dimap_Document/Product_Information/Delivery_Identification/PRODUCTION_DATE) }
          </metadata>,
 
          <!-- FORMAT -->
-         <metadata queryable="format" name="Format"
+         <metadata queryable="format" name="Format" 
                    category="product" type="text/plain">
          {
             concat("DIMAP 2.0 ",
